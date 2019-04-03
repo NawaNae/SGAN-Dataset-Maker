@@ -2,7 +2,7 @@ new ClipboardJS('.btn.copyBtn');
 import {Pedestrian} from "./pedestrian.js";
 import {PedestrianList} from "./pedestrianList.js";
 import {Coordinate} from "./utl.js";
-var pedestrains =new PedestrianList();
+
 class View
 {
     constructor()
@@ -34,8 +34,7 @@ class View
             this["on"+key+"Change"]=()=>{};
             this["_on"+key+"Change"]=function(e)
             {
-                console.log(this)
-                that["on"+key+"Change"](parseFloat(this.innerText),e);
+                that["on"+key+"Change"](parseFloat(this.value),e);
                 that._onChange();
             }
             var input=this.inputs[key];
@@ -62,8 +61,9 @@ class Controller
     {
         this.view=new View();
         this.view.init();
-        this.model=pedestrains;
+        this.model= this.pedestrains =new PedestrianList();
     }
+    
 }
 window.app={}
 app.controller=new Controller();
