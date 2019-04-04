@@ -36,10 +36,10 @@ export class Pedestrian
     get y(){return this.coordinate.y;}
     get outputString()
     {
-        const tab='\t',newline='\n';
+        const tab='\t';
         return  this.t.toString()+tab+
         this.id.toString()+tab+
         this.coordinate.x+tab+
-        this.coordinate.y+newline;
+        this.coordinate.y;
     }
 }

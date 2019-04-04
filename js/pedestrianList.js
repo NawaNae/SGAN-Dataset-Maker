@@ -13,8 +13,10 @@ export class PedestrianList extends Array
         var ans=""
         if(this.length===0)
             return "";
+        var lastIndex=this.length-1;
+        var i=0;
         for(var pedestrian of this)
-            ans+=pedestrian.outputString;
+            ans+=(pedestrian.outputString+(i++<lastIndex?"\n":""));
         return ans;
     }
     /**
