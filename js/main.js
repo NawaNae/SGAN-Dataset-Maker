@@ -11,6 +11,7 @@ class View
         this.buttons={};
         this.data={};
         this.onChange=()=>{};
+        this.onDataChanged=()=>{};
         this._onInputParseError=sender=>this.onInputParseError(sender);
     }
     init()
@@ -61,6 +62,7 @@ class View
             {
                 var key=this.dataset.key;
                 that["on"+this.dataset.key+"Click"](e);
+                that._onDataChanged();
             }
             button.addEventListener("click",this["_on"+key+"Click"]);
             button.dataset.key=key;
@@ -72,16 +74,21 @@ class View
     }
     get output()
     {
-        return this._output.innerText;
+        return this._output.value;
     }
     set output(val)
     {
-        this._output.innerText=val;
+        this._output.value=val;
     }
     _onChange()
     {
         this.onChange();
     }
+    _onDataChanged()
+    {
+        this.onDataChanged();
+    }
+    
 }
 class Controller
 {
@@ -100,6 +107,7 @@ class Controller
     {
         this.view.onaddClick=()=>this.onAdd();
         this.view.onremoveClick=()=>this.onRemove();
+        this.view.onDataChanged=()=>this.onDataChanged();
     }
     onAdd()
     {
@@ -113,6 +121,10 @@ class Controller
         var index=this.model.findIndexOf(p);
         if(index!==-1)
             this.model.splice(index,1);
+    }
+    onDataChanged()
+    {
+        this.view.output=this.model.outputString;
     }
 
     

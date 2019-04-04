@@ -14,8 +14,8 @@ export class PedestrianList extends Array
         if(this.length===0)
             return "";
         for(var pedestrian of this)
-            str+=pedestrian.outputString;
-        return str;
+            ans+=pedestrian.outputString;
+        return ans;
     }
     /**
      * 是否已經包含
