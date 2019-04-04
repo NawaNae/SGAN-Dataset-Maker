@@ -1,3 +1,4 @@
+import {isset,isnotset} from "./utl.js";
 /**
  * @class PedestrianList
  * 用來儲存每個瞬間Pedestrian的List
@@ -15,6 +16,13 @@ export class PedestrianList extends Array
         for(var pedestrian of this)
             str+=pedestrian.outputString;
         return str;
+    }
+    /**
+     * 是否已經包含
+     */
+    findIndexOf(pedestrian)
+    {
+        return super.findIndex(val=>{return val.isSameAtMoment(pedestrian)})
     }
     /**
      * @description 用來排序的私有方法

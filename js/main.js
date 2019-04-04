@@ -98,16 +98,21 @@ class Controller
     }
     attachEventListener()
     {
-        this.view.onaddClick=this.onAdd;
-        this.view.onremoveClick=this.onRemove;
+        this.view.onaddClick=()=>this.onAdd();
+        this.view.onremoveClick=()=>this.onRemove();
     }
     onAdd()
     {
-        console.log("add");
+        var p=new Pedestrian(this.view.data);
+        if(this.model.findIndexOf(p)===-1)
+            this.model.push(p);
     }
     onRemove()
     {
-        console.log("remove");
+        var p=new Pedestrian(this.view.data);
+        var index=this.model.findIndexOf(p);
+        if(index!==-1)
+            this.model.splice(index,1);
     }
 
     

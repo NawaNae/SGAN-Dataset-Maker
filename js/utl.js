@@ -14,4 +14,8 @@ export class Coordinate
         this.x=x.x||x._x||x||0;
         this.y=x.y||x._y||y||0;
     }
+    equalTo(rhs)
+    {
+        return rhs.x==this.x&&rhs.y==this.y;
+    }
 }

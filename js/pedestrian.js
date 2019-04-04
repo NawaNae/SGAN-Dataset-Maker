@@ -11,9 +11,24 @@ export class Pedestrian
 {
     constructor(id,time,coordinate)
     {
+        if(utl.isset(id)&&utl.isnotset(time)&&utl.isnotset(coordinate)&&utl.isset(id.time))
+        {
+            var object=id;
+            coordinate=new utl.Coordinate(object||object.coordinate);
+            time=object.time;
+            id=object.id;
+        }
         this.coordinate=new utl.Coordinate(coordinate);
         this.t=time;
         this.id=id;
+    }
+    isEqualto(pedestrian)
+    {
+        return this.isSameAtMonent(pedestrian)&&this.coordinate.isEqualto(pedestrian.coordinate);
+    }
+    isSameAtMoment(pedestrian)
+    {
+        return pedestrian.t==this.t&&pedestrian.id==this.id;
     }
     set x(val){this.coordinate.x=val;}
     get x(){return this.coordinate.x;}
