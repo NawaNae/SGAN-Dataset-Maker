@@ -27,6 +27,7 @@ class View
         this.inputs.y=document.getElementById("yInput");
         this.buttons.add=document.getElementById("add");
         this.buttons.remove=document.getElementById("remove");
+        this.buttons.edit=document.getElementById("edit");
         this._output=document.getElementById("output");
     }
     addEventListener()
@@ -107,20 +108,38 @@ class Controller
     {
         this.view.onaddClick=()=>this.onAdd();
         this.view.onremoveClick=()=>this.onRemove();
+        this.view.oneditClick=()=>this.onEdit();
         this.view.onDataChanged=()=>this.onDataChanged();
     }
-    onAdd()
+    addPedestrianFromData()
     {
         var p=new Pedestrian(this.view.data);
         if(this.model.findIndexOf(p)===-1)
             this.model.push(p);
     }
-    onRemove()
+    removePedestrianViaData()
     {
         var p=new Pedestrian(this.view.data);
         var index=this.model.findIndexOf(p);
         if(index!==-1)
             this.model.splice(index,1);
+    }
+    editPedestrianToData()
+    {
+        this.removePedestrianViaData();
+        this.addPedestrianFromData();
+    }
+    onAdd()
+    {
+        this.addPedestrianFromData();
+    }
+    onRemove()
+    {
+        this.removePedestrianViaData();
+    }
+    onEdit()
+    {
+        this.editPedestrianToData();
     }
     onDataChanged()
     {
